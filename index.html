@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History Time Travel · An Interactive 2D Game on José Rizal</title>
+<meta name="description" content="History Time Travel: an offline Android 2D game for learning the life and works of José Rizal, made for the Grade 10 students of Rizal Standard Academy. BSIT capstone, STI College San Pablo, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<noscript><style>#loader{display:none}</style></noscript>
+</head>
+<body class="is-loading">
+
+<!-- ============ LOADING SCREEN ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-mark">History Time Travel</div>
+    <div class="loader-icons">
+      <!-- book -->
+      <svg viewBox="0 0 32 32"><path d="M5 6h9a3 3 0 0 1 3 3v17a2.5 2.5 0 0 0-2.5-2.5H5zM27 6h-9a3 3 0 0 0-3 3v17a2.5 2.5 0 0 1 2.5-2.5H27z"/></svg>
+      <!-- quill -->
+      <svg viewBox="0 0 32 32"><path d="M26 4C15 6 9 13 7 25l2 1c2-4 5-7 9-8l-3-1c4-1 7-3 9-6l-4 0c3-2 5-4 6-7z"/><path d="M5 28l4-4"/></svg>
+      <!-- scroll -->
+      <svg viewBox="0 0 32 32"><path d="M9 6h16v17a3 3 0 0 1-3 3H8"/><path d="M9 6a3 3 0 0 0-3 3v2h3M8 26a3 3 0 0 0 3-3v-2H5v2a3 3 0 0 0 3 3zM13 11h8M13 15h8M13 19h5"/></svg>
+      <!-- compass -->
+      <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M20.5 11.5l-2.8 6.2-6.2 2.8 2.8-6.2z"/></svg>
+      <!-- star -->
+      <svg viewBox="0 0 32 32"><path d="M16 4l3.4 7.6 8.1.8-6.1 5.4 1.8 8L16 21.7 8.8 25.8l1.8-8-6.1-5.4 8.1-.8z"/></svg>
+      <!-- hourglass -->
+      <svg viewBox="0 0 32 32"><path d="M9 4h14M9 28h14M10 4c0 7 12 8 12 12s-12 5-12 12M22 4c0 7-12 8-12 12s12 5 12 12"/></svg>
+    </div>
+    <div class="loader-tip">Every choice you make shapes how a chapter ends.</div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <a class="logo" href="#top" aria-label="History Time Travel, back to top">
+    <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4h14M9 28h14M10 4c0 7 12 8 12 12s-12 5-12 12M22 4c0 7-12 8-12 12s12 5 12 12"/></svg>
+    <span>History Time Travel</span>
+  </a>
+  <nav class="main-nav" aria-label="Sections">
+    <a href="#top">Home</a>
+    <a href="#game">The Game</a>
+    <a href="#chapters">Chapters</a>
+    <a href="#why">Why</a>
+    <a href="#screens">Gallery</a>
+    <a href="#results">Results</a>
+    <a href="#team">Team</a>
+  </nav>
+  <a class="btn btn-gold btn-sm" href="downloads/History_Time_Travel.apk" download="History_Time_Travel.apk" data-download>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
+</header>
+<nav class="mobile-nav" id="mobileNav" aria-label="Sections (mobile)">
+  <a href="#top">Home</a><a href="#game">The Game</a><a href="#chapters">Chapters</a><a href="#why">Why</a><a href="#screens">Gallery</a><a href="#results">Results</a><a href="#team">Team</a>
+</nav>
+
+<!-- ============ SIDE DOCK ============ -->
+<aside class="dock" id="dock" aria-label="Quick links">
+  <button class="dock-tab" id="dockTab" aria-expanded="false" aria-controls="dockPanel" aria-label="Show quick links">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <div class="dock-panel" id="dockPanel">
+    <div class="dock-title">Jump to</div>
+    <a href="#game">The Game</a>
+    <a href="#chapters">Chapters</a>
+    <a href="#why">Why</a>
+    <a href="#screens">Gallery</a>
+    <a href="#results">Results</a>
+    <a href="#method">Development</a>
+    <a href="#team">Team</a>
+    <a class="dock-dl" href="downloads/History_Time_Travel.apk" download="History_Time_Travel.apk" data-download>Download APK</a>
+  </div>
+</aside>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" aria-label="Title screen">
+  <div class="hero-art" id="heroArt" role="button" tabindex="0" aria-label="Start: scroll to The Game">
+    <img src="assets/img/title.webp" srcset="assets/img/title.webp 1600w, assets/img/title-2560.webp 2560w, assets/img/title-3840.webp 3840w" sizes="(max-width: 760px) 100vw, max(100vw, 222vh)" alt="The game's title screen: a pixel-art Manila street at sunset with the words History Time Travel" fetchpriority="high">
+  </div>
+  <div class="hero-bar">
+    <div class="hero-bar-inner">
+      <div class="hero-meta">
+        <div class="eyebrow">BSIT Capstone Project · STI College San Pablo · 2026</div>
+        <p>An interactive 2D game for learning the life and works of José Rizal, made for the Grade 10 students of Rizal Standard Academy.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="dl-tile" href="downloads/History_Time_Travel.apk" download="History_Time_Travel.apk" data-download>
+          <svg class="android" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>
+          <span><small>Download for</small>Android</span>
+        </a>
+        <div class="dl-facts"><span>APK · 177 MB</span><span>Works offline</span><span>No account</span></div>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#game" aria-label="Scroll to The Game"><span></span></a>
+</section>
+
+<!-- ============ THE GAME (carousel + tabbed list) ============ -->
+<section class="sec sec-game" id="game">
+  <div class="sec-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="orn-title"><span>The Game</span></h2>
+    <p class="sec-sub">Step into <i>Noli Me Tángere</i> and <i>El Filibusterismo</i> as the people who lived them.</p>
+    <div class="game-grid">
+      <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Game screens">
+        <div class="car-track">
+          <figure class="car-slide is-active"><img src="assets/img/world-hud.webp" alt="Top-down game world with the objectives panel, joystick and Talk button"><figcaption>Explore Binondo, San Diego and the lake</figcaption></figure>
+          <figure class="car-slide"><img src="assets/img/dialogue-choices.webp" alt="Dialogue choices over a lake scene" loading="lazy"><figcaption>Make choices at key moments of the story</figcaption></figure>
+          <figure class="car-slide"><img src="assets/img/minigame-play.webp" alt="Inspecting the wreckage of the derrick minigame" loading="lazy"><figcaption>Minigames tied to each chapter's events</figcaption></figure>
+          <figure class="car-slide"><img src="assets/img/minigame-result.webp" alt="Minigame result with a star rating" loading="lazy"><figcaption>Earn zero to three stars, then try to beat your best</figcaption></figure>
+          <figure class="car-slide"><img src="assets/img/rizal-fact-card.webp" alt="A Rizal Life fact card" loading="lazy"><figcaption>Unlock facts about Rizal himself</figcaption></figure>
+        </div>
+        <button class="car-btn prev" aria-label="Previous screen"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="car-btn next" aria-label="Next screen"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="car-dots" role="tablist" aria-label="Choose screen"></div>
+      </div>
+
+      <div class="info-panel">
+        <div class="info-tabs" role="tablist" aria-label="About the game">
+          <button role="tab" aria-selected="true" aria-controls="tab-story" id="t-story">Story</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-play" id="t-play">Play</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-learn" id="t-learn">Learn</button>
+        </div>
+        <ul class="info-list" id="tab-story" role="tabpanel" aria-labelledby="t-story">
+          <li><b>Pick a book, then a chapter</b><span>Noli or Fili</span><p>Five chapters from each novel, each with a synopsis and its historical context.</p></li>
+          <li><b>Play as the main character</b><span>Ibarra, Elías…</span><p>Ibarra, Elías, Basilio, Plácido, Isagani and others, in a top-down 2D world.</p></li>
+          <li><b>Talk and decide</b><span>Dialogic</span><p>Conversations with portraits and choices. Some choices stay locked until you uncover an earlier part of the scene.</p></li>
+          <li><b>Follow the quests</b><span>Objectives</span><p>On-screen objectives follow the chapter's events. Gates stay closed until the story opens them.</p></li>
+          <li><b>Skip Ahead</b><span>Recap</span><p>Jump to a later chapter and get a recap of the ones you skipped.</p></li>
+        </ul>
+        <ul class="info-list" id="tab-play" role="tabpanel" aria-labelledby="t-play" hidden>
+          <li><b>13 story minigames</b><span>0–3 stars</span><p>The Letter and Memory, Catch in the Lake, Debate: Guardia Civil, Classroom Observation and more.</p></li>
+          <li><b>Failing never blocks you</b><span>Retry anytime</span><p>The story continues either way, and you can retry for a better rating.</p></li>
+          <li><b>Dialogue Log</b><span>Reread</span><p>Open the Log any time to reread every line spoken so far.</p></li>
+          <li><b>Unlimited autosaves</b><span>Resume</span><p>Close the game, even in the middle of a conversation, and pick up on the same line.</p></li>
+          <li><b>TL | EN toggle</b><span>Filipino default</span><p>Switch the whole game, dialogue included, between Filipino and English.</p></li>
+        </ul>
+        <ul class="info-list" id="tab-learn" role="tabpanel" aria-labelledby="t-learn" hidden>
+          <li><b>Post-chapter quiz</b><span>5 questions</span><p>You need a perfect score to open the next chapter.</p></li>
+          <li><b>Rizal clues</b><span>Rizal Life</span><p>Clues hidden around the world unlock facts about Rizal's own life.</p></li>
+          <li><b>Gallery</b><span>Extras</span><p>Character biographies and the scenes you have unlocked.</p></li>
+          <li><b>Minigame replay</b><span>Extras</span><p>Replay any minigame you've reached and improve your score.</p></li>
+          <li><b>Offline, no account</b><span>Android</span><p>Progress stays on the device. No internet needed.</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTERS (book strips) ============ -->
+<section class="sec sec-chapters" id="chapters">
+  <div class="wrap">
+    <h2 class="orn-title"><span>Ten Chapters</span></h2>
+    <p class="sec-sub">Five from each novel. Tap a book to see its chapters.</p>
+  </div>
+  <div class="strips">
+    <div class="strip strip-noli">
+      <button class="strip-head" aria-expanded="false" aria-controls="noli-list">
+        <span class="strip-emblem" aria-hidden="true"></span>
+        <span class="strip-name">Noli Me Tángere</span>
+        <span class="strip-year">1887</span>
+      </button>
+      <div class="strip-body" id="noli-list">
+        <ol class="ch-row">
+          <li><em>7</em><b>An Idyll on an Azotea</b><i>Suyuan sa Asotea</i><small>as Crisóstomo Ibarra</small></li>
+          <li><em>23</em><b>Fishing</b><i>Ang Pangingisda</i><small>as Crisóstomo Ibarra</small></li>
+          <li><em>32</em><b>The Derrick</b><i>Ang Panghugos</i><small>as Crisóstomo Ibarra</small></li>
+          <li><em>50</em><b>Elías' Story</b><i>Ang Kuwento ni Elias</i><small>as Elías</small></li>
+          <li><em>63</em><b>Christmas Eve</b><i>Noche Buena</i><small>as Basilio</small></li>
+        </ol>
+      </div>
+    </div>
+    <div class="strip strip-fili">
+      <button class="strip-head" aria-expanded="false" aria-controls="fili-list">
+        <span class="strip-emblem" aria-hidden="true"></span>
+        <span class="strip-name">El Filibusterismo</span>
+        <span class="strip-year">1891</span>
+      </button>
+      <div class="strip-body" id="fili-list">
+        <ol class="ch-row">
+          <li><em>7</em><b>Simoun</b><i>Simoun</i></li>
+          <li><em>13</em><b>The Physics Class</b><i>Ang Klase sa Pisika</i></li>
+          <li><em>27</em><b>The Friar and the Filipino</b><i>Ang Prayle at ang Pilipino</i></li>
+          <li><em>35</em><b>The Party</b><i>Ang Piging</i></li>
+          <li><em>39</em><b>Conclusion</b><i>Katapusan</i></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="sec sec-why" id="why">
+  <div class="wrap">
+    <h2 class="orn-title"><span>Why We Made It</span></h2>
+    <p class="sec-sub">Students love Rizal, but many get bored in Rizal lessons. We surveyed 51 junior and senior high school students of Rizal Standard Academy.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">100%</div><div class="t">find the life and works of Rizal interesting</div><div class="bar"><i style="width:100%"></i></div></div>
+      <div class="stat bad"><div class="n">56.9%</div><div class="t">sometimes feel bored during lessons about Rizal</div><div class="bar"><i style="width:56.9%"></i></div></div>
+      <div class="stat bad"><div class="n">51.0%</div><div class="t">find it hard to stay focused with traditional teaching</div><div class="bar"><i style="width:51%"></i></div></div>
+      <div class="stat"><div class="n">96.1%</div><div class="t">understand lessons better when activities are interactive</div><div class="bar"><i style="width:96.1%"></i></div></div>
+      <div class="stat"><div class="n">92.2%</div><div class="t">would be more motivated to learn Rizal through a game</div><div class="bar"><i style="width:92.2%"></i></div></div>
+    </div>
+    <p class="quote">The subject isn't the problem. <b>The way it's taught is.</b></p>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="sec sec-screens" id="screens">
+  <div class="wrap">
+    <h2 class="orn-title"><span>Gallery</span></h2>
+    <p class="sec-sub">Tap any screen to enlarge it.</p>
+    <div class="tabs" role="tablist" aria-label="Filter screens">
+      <button class="tab" role="tab" aria-selected="true" data-f="all">All</button>
+      <button class="tab" role="tab" aria-selected="false" data-f="start">Getting started</button>
+      <button class="tab" role="tab" aria-selected="false" data-f="play">Playing</button>
+      <button class="tab" role="tab" aria-selected="false" data-f="mini">Minigames</button>
+      <button class="tab" role="tab" aria-selected="false" data-f="extras">Progress &amp; Extras</button>
+    </div>
+    <div class="grid" id="grid">
+      <button class="card" data-c="start"><img src="assets/img/book-select.webp" alt="Choose a Book screen" loading="lazy"><div class="cap"><b>Choose a Book</b><span>Noli Me Tángere (1887) or El Filibusterismo (1891), with progress on each cover.</span></div></button>
+      <button class="card" data-c="start"><img src="assets/img/chapter-select.webp" alt="Choose a Chapter screen" loading="lazy"><div class="cap"><b>Choose a Chapter</b><span>Five chapter cards per book, marked New, In progress or Completed.</span></div></button>
+      <button class="card" data-c="start"><img src="assets/img/chapter-details.webp" alt="Chapter Details screen" loading="lazy"><div class="cap"><b>Chapter Details</b><span>Synopsis, historical context and things to look for.</span></div></button>
+      <button class="card" data-c="play"><img src="assets/img/world-hud.webp" alt="Game world with on-screen controls" loading="lazy"><div class="cap"><b>Exploring the world</b><span>Objectives panel, joystick and a context-sensitive action button.</span></div></button>
+      <button class="card" data-c="play"><img src="assets/img/dialogue-choices.webp" alt="Dialogue choices over a lake scene" loading="lazy"><div class="cap"><b>Choices</b><span>At key moments, parchment choices replace the dialogue box.</span></div></button>
+      <button class="card" data-c="play"><img src="assets/img/dialogue-log.webp" alt="Dialogue Log screen" loading="lazy"><div class="cap"><b>Dialogue Log</b><span>Reread every line spoken so far in the chapter.</span></div></button>
+      <button class="card" data-c="mini"><img src="assets/img/minigame-intro.webp" alt="Minigame introduction panel" loading="lazy"><div class="cap"><b>Minigame intro</b><span>Each minigame starts with its title and its goal in the story.</span></div></button>
+      <button class="card" data-c="mini"><img src="assets/img/how-to-play.webp" alt="How to Play card" loading="lazy"><div class="cap"><b>How to Play</b><span>Animated cards explain the controls, one gesture at a time.</span></div></button>
+      <button class="card" data-c="mini"><img src="assets/img/minigame-play.webp" alt="Wreckage inspection minigame" loading="lazy"><div class="cap"><b>In-story minigame</b><span>Inspect the wreckage of the derrick for evidence (Noli, Ch. 32).</span></div></button>
+      <button class="card" data-c="mini"><img src="assets/img/minigame-result.webp" alt="Minigame result with star rating" loading="lazy"><div class="cap"><b>Star rating</b><span>Zero to three stars, your best score, and a quick retry.</span></div></button>
+      <button class="card" data-c="extras"><img src="assets/img/chapter-complete.webp" alt="Chapter Complete notice" loading="lazy"><div class="cap"><b>Chapter Complete</b><span>The road to the next area opens, and the next chapter follows.</span></div></button>
+      <button class="card" data-c="extras"><img src="assets/img/book-complete.webp" alt="Book Complete card" loading="lazy"><div class="cap"><b>Book Complete</b><span>A summary of the ending, chapters cleared and your total score.</span></div></button>
+      <button class="card" data-c="extras"><img src="assets/img/extras-minigames.webp" alt="Extras minigames screen" loading="lazy"><div class="cap"><b>Minigames replay</b><span>Replay any minigame you've reached and beat your best score.</span></div></button>
+      <button class="card" data-c="extras"><img src="assets/img/rizal-life.webp" alt="Rizal Life screen" loading="lazy"><div class="cap"><b>Rizal Life</b><span>Facts about Rizal that you unlock by finding clues in the world.</span></div></button>
+      <button class="card" data-c="extras"><img src="assets/img/rizal-fact-card.webp" alt="Rizal fact card" loading="lazy"><div class="cap"><b>A Rizal fact</b><span>Each fact opens on its own parchment card.</span></div></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="sec sec-results" id="results">
+  <div class="wrap">
+    <h2 class="orn-title"><span>Evaluation</span></h2>
+    <p class="sec-sub">Rated by students, teachers and IT experts on a 5-point scale.</p>
+    <div class="res">
+      <div class="r parch">
+        <div class="who">86 Grade 10 students</div>
+        <div class="big"><b>4.38</b><span>/ 5</span></div>
+        <div class="verdict">Highly Acceptable</div>
+        <div class="basis">User acceptance testing</div>
+        <div class="crit"><div class="lbl"><span>Engagement</span><span>4.44</span></div><div class="track"><i style="width:88.8%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Mobile Usability</span><span>4.40</span></div><div class="track"><i style="width:88%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Retention</span><span>4.39</span></div><div class="track"><i style="width:87.8%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Educational Value</span><span>4.30</span></div><div class="track"><i style="width:86%"></i></div></div>
+      </div>
+      <div class="r parch">
+        <div class="who">6 teachers</div>
+        <div class="big"><b>4.78</b><span>/ 5</span></div>
+        <div class="verdict">Highly Accepted</div>
+        <div class="basis">Technology Acceptance Model</div>
+        <div class="crit"><div class="lbl"><span>Attitude</span><span>5.00</span></div><div class="track"><i style="width:100%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Intention to Use</span><span>4.83</span></div><div class="track"><i style="width:96.6%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Usefulness</span><span>4.67</span></div><div class="track"><i style="width:93.4%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Ease of Use</span><span>4.62</span></div><div class="track"><i style="width:92.4%"></i></div></div>
+      </div>
+      <div class="r parch">
+        <div class="who">3 IT experts</div>
+        <div class="big"><b>4.82</b><span>/ 5</span></div>
+        <div class="verdict">Excellent</div>
+        <div class="basis">ISO/IEC 25010 software quality</div>
+        <div class="crit"><div class="lbl"><span>Compatibility</span><span>5.00</span></div><div class="track"><i style="width:100%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Security</span><span>4.93</span></div><div class="track"><i style="width:98.6%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Usability</span><span>4.83</span></div><div class="track"><i style="width:96.6%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Maintainability</span><span>4.80</span></div><div class="track"><i style="width:96%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Performance &amp; Portability</span><span>4.78</span></div><div class="track"><i style="width:95.6%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Reliability</span><span>4.75</span></div><div class="track"><i style="width:95%"></i></div></div>
+        <div class="crit"><div class="lbl"><span>Functional Suitability</span><span>4.67</span></div><div class="track"><i style="width:93.4%"></i></div></div>
+      </div>
+    </div>
+    <p class="res-note">These evaluations were done on the early-November 2026 build. The game has been refined since then.</p>
+  </div>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section class="sec sec-method" id="method">
+  <div class="wrap">
+    <h2 class="orn-title"><span>Development</span></h2>
+    <p class="sec-sub">Modified Waterfall, March to November 2026.</p>
+    <div class="timeline">
+      <div class="step"><div class="dot">1</div><div><div class="when">March</div><div class="what">Topic chosen</div></div></div>
+      <div class="step"><div class="dot">2</div><div><div class="when">April</div><div class="what">Student survey and requirements</div></div></div>
+      <div class="step"><div class="dot">3</div><div><div class="when">June – Sept</div><div class="what">System and game design</div></div></div>
+      <div class="step"><div class="dot">4</div><div><div class="when">Aug – Oct</div><div class="what">Development</div></div></div>
+      <div class="step"><div class="dot">5</div><div><div class="when">Late Oct</div><div class="what">Integration and testing</div></div></div>
+      <div class="step"><div class="dot">6</div><div><div class="when">November</div><div class="what">Evaluation and defense</div></div></div>
+    </div>
+    <div class="tech">
+      <span class="chip">Godot 4.7</span><span class="chip">GDScript</span><span class="chip">Dialogic 2</span><span class="chip">Pixel Studio</span><span class="chip">Android</span><span class="chip">Local saves on the device</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="sec sec-team" id="team">
+  <div class="wrap">
+    <h2 class="orn-title"><span>The Team</span></h2>
+    <p class="sec-sub">Bachelor of Science in Information Technology · STI College San Pablo · November 2026</p>
+    <div class="team">
+      <div class="m parch"><div class="av">AA</div><b>Ailah Gianelle L. Acebedo</b><span>Developer</span></div>
+      <div class="m parch"><div class="av">RC</div><b>Rick Jason V. Coronado</b><span>Developer</span></div>
+      <div class="m parch"><div class="av">DS</div><b>Darren Alexander Z. Sta. Rita</b><span>Developer</span></div>
+      <div class="m parch"><div class="av">JT</div><b>John Patrick M. Tubino</b><span>Developer</span></div>
+    </div>
+    <div class="people">
+      <div class="p parch"><div class="role">Adviser</div><b>Mr. Michael J. Jimenez, MBM</b><span>Capstone Project Adviser and Coordinator</span></div>
+      <div class="p parch"><div class="role">Partner school</div><b>Rizal Standard Academy</b><span>School Head: Mr. Jonathan P. Urriza · MOA signed</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="get" id="download">
+    <div class="wrap get-inner">
+      <h2 class="orn-title"><span>Get the Game</span></h2>
+      <p>Android · works offline · no account needed · Filipino &amp; English</p>
+      <a class="btn btn-gold btn-lg" href="downloads/History_Time_Travel.apk" download="History_Time_Travel.apk" data-download>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download for Android
+      </a>
+      <div class="get-meta">APK file · 177 MB</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-brand">
+        <div class="logo"><svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4h14M9 28h14M10 4c0 7 12 8 12 12s-12 5-12 12M22 4c0 7-12 8-12 12s12 5 12 12"/></svg><span>History Time Travel</span></div>
+        <p>An Interactive 2D Game for Learning the Life and Works of José Rizal for Grade 10 Students of Rizal Standard Academy</p>
+      </div>
+      <div class="foot-col">
+        <h3>Explore</h3>
+        <a href="#game">The Game</a><a href="#chapters">Chapters</a><a href="#screens">Gallery</a><a href="#results">Results</a>
+      </div>
+      <div class="foot-col">
+        <h3>Project</h3>
+        <a href="#why">Why we made it</a><a href="#method">Development</a><a href="#team">Team</a><a href="#download">Download</a>
+      </div>
+      <div class="foot-col">
+        <h3>Schools</h3>
+        <span>STI College San Pablo</span><span>Rizal Standard Academy</span>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">BSIT Capstone Project · STI College San Pablo · 2026</div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="x" aria-label="Close">✕</button>
+  <button class="prev" aria-label="Previous">‹</button>
+  <img alt="">
+  <div class="cap"></div>
+  <button class="next" aria-label="Next">›</button>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
